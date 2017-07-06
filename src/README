@@ -63,6 +63,9 @@ Currently available overlay bundles:
 * Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
                space. Use the "lua" command to run an interactive lua interpreter
 
+* luasocket  - socket support for lua
+               depends on the lua bundle
+
 * nweb       - nweb is a very small and easy to use webserver
                run it using 'nweb 80 /srv/www'
                to portforward port 8080 on the host to port 80 on the guest (minimal)
