@@ -2,7 +2,7 @@
 # common code used by all bundles
 # should be included at the top of every *.sh file of each bundle
 
-export MAIN_SRC_DIR=$(realpath --no-symlinks $PWD/../../../)
+export MAIN_SRC_DIR=$(realpath --no-symlinks "$PWD/../../../")
 export WORK_DIR="$MAIN_SRC_DIR/work"
 export SRC_DIR=$(pwd)
 export CONFIG="$MAIN_SRC_DIR/.config"
@@ -10,10 +10,10 @@ export SYSROOT="$WORK_DIR/sysroot"
 export SYSROOT_SPECS="$WORK_DIR/sysroot.specs"
 
 # Read the 'JOB_FACTOR' property from $CONFIG
-export JOB_FACTOR="$(grep -i ^JOB_FACTOR $CONFIG | cut -f2 -d'=')"
+export JOB_FACTOR="$(grep -i ^JOB_FACTOR "$CONFIG" | cut -f2 -d'=')"
 
 # Read the 'CFLAGS' property from $CONFIG
-export CFLAGS="$(grep -i ^CFLAGS $CONFIG | cut -f2 -d'=')"
+export CFLAGS="$(grep -i ^CFLAGS "$CONFIG" | cut -f2 -d'=')"
 
 # Find the number of available CPU cores
 export NUM_CORES="$(grep ^processor /proc/cpuinfo | wc -l)"
@@ -24,7 +24,7 @@ export NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 # Ideally we would export MAKE at this point with -j etc to allow programs to just run $(MAKE) and not worry about extra flags that need to be passed
 #  export MAKE="${MAKE-make} -j $NUM_JOBS"
 
-# sysroot flags for the compiler
+# sysroot flags for the compiler and linker
 
 #-Wl,-nostdlib is required to make ld / gcc ignore the host's /usr/lib and /lib
 #ld_flags="-Wl,-nostdlib $(grep -- \"-L\" $SYSROOT_SPECS)"
@@ -36,3 +36,4 @@ export NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 #export CFLAGS="$CFLAGS"
 #export LDFLAGS="$LDFLAGS $ld_flags"
 export CFLAGS="$CFLAGS --sysroot $SYSROOT"
+export LDFLAGS="$LDFLAGS --sysroot $SYSROOT"
