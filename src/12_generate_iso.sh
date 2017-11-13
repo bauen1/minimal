@@ -36,18 +36,6 @@ rm -rf work/isoimage
 mkdir work/isoimage
 echo "Prepared new ISO image work area."
 
-# Read the 'COPY_SOURCE_ISO' property from '.config'
-COPY_SOURCE_ISO="$(grep -i ^COPY_SOURCE_ISO .config | cut -f2 -d'=')"
-
-if [ "$COPY_SOURCE_ISO" = "true" ] ; then
-  # Copy all prepared source files and folders to '/src'. Note that the scripts
-  # will not work there because you also need proper toolchain.
-  cp -r work/src work/isoimage
-  echo "Source files and folders have been copied to '/src'."
-else
-  echo "Source files and folders have been skipped."
-fi
-
 # Read the 'OVERLAY_BUNDLES' property from '.config'
 OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 

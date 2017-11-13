@@ -85,6 +85,9 @@ Currently available overlay bundles:
 
                Some packages in this overlay bundle require ncurses.
 
+* src        - contains the "Minimal Linux Live" source code files and folders at /src
+               Previously "COPY_SOURCE_ROOTFS" and "COPY_SOURCE_ISO"
+
 ###   ###   ###
 
 I only provide the build scripts. It's entirely up to you to configure and
