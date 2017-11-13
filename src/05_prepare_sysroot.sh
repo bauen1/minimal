@@ -8,7 +8,7 @@ cd work
 
 echo "Cleaning existing sysroot. This may take a while..."
 rm -rf sysroot
-rm -rf sysroot.specs
+#rm -rf sysroot.specs
 
 echo "Preparing glibc. This may take a while..."
 cp -r glibc/glibc_installed sysroot
@@ -44,16 +44,16 @@ ln -s ../../kernel/kernel_installed/include/mtd include/mtd
 
 cd ..
 
-echo "generating sysroot.specs"
+#echo "generating sysroot.specs"
 SYSROOT="$PWD/sysroot"
 
 # gcc has a "internal" path that needs to be added to find the static versions of libgcc_*
-GCC_INTERNAL_PATH=$(dirname $(gcc -print-libgcc-file-name))
+#GCC_INTERNAL_PATH=$(dirname $(gcc -print-libgcc-file-name))
 
-cat << CEOF > sysroot.specs
-*link_libgcc:
--L$SYSROOT/lib -L$SYSROOT/lib64 -L$SYSROOT/usr/lib -L$SYSROOT/usr/lib64 -L$SYSROOT/usr/local/lib -L$SYSROOT/usr/local/lib64 -L$GCC_INTERNAL_PATH
-CEOF
+#cat << CEOF > sysroot.specs
+#*link_libgcc:
+#-L$SYSROOT/lib -L$SYSROOT/lib64 -L$SYSROOT/usr/lib -L$SYSROOT/usr/lib64 -L$SYSROOT/usr/local/lib -L$SYSROOT/usr/local/lib64 -L$GCC_INTERNAL_PATH
+#CEOF
 
 cd $SRC_DIR
 

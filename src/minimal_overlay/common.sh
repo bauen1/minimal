@@ -35,4 +35,4 @@ export NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 #export CC="${CC-gcc} $gcc_flags $ld_flags"
 #export CFLAGS="$CFLAGS"
 #export LDFLAGS="$LDFLAGS $ld_flags"
-
+export CFLAGS="$CFLAGS --with-sysroot $SYSROOT"
