@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 echo "*** GENERATE ROOTFS BEGIN ***"
 
@@ -23,7 +24,7 @@ cp -r src/minimal_rootfs/* rootfs
 
 cd rootfs
 
-# Remove 'linuxrc' which is used when we boot in 'RAM disk' mode. 
+# Remove 'linuxrc' which is used when we boot in 'RAM disk' mode.
 rm -f linuxrc
 
 # Read the 'COPY_SOURCE_ROOTFS' property from '.config'
@@ -41,7 +42,7 @@ fi
 # This is for the dynamic loader. Note that the name and the location are both
 # specific for 32-bit and 64-bit machines. First we check the BusyBox executable
 # and then we copy the dynamic loader to its appropriate location.
-BUSYBOX_ARCH=$(file bin/busybox | cut -d' '  -f3)
+BUSYBOX_ARCH=$(file bin/busybox | cut -d' ' -f3)
 if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
   mkdir lib64
   cp $SYSROOT/lib/ld-linux* lib64
